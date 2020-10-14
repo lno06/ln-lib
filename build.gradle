@@ -42,6 +42,8 @@ dependencies {
     // jdk11 does not contain javax.xml.bind.JAXBException, and is needed for some projects
     implementation("javax.xml.bind:jaxb-api:${jaxb_api_version}")
 
+    implementation("org.slf4j:slf4j-api:${slf4j_api_version}")
+
     // common-test
     // junit framework
     testImplementation("org.junit.jupiter:junit-jupiter:${junit_jupiter_version}")
