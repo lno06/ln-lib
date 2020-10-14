@@ -2,7 +2,7 @@
 
 Library containing helpful classes
 
-Pre-requisite
+Pre-requisites
 * gradle
 * java 11
 
