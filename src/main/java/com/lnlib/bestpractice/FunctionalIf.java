@@ -7,8 +7,10 @@ import java.util.function.Function;
  * The idea is to get rid of the big IFs when there are actions associated to each case.
  * A function (or any functional interface) can be associated to each case, then
  * just call the method to execute the functional interface.
- *
+ * <p>
  * https://www.developer.com/java/data/seven-ways-to-refactor-java-switch-statements.html
+ * <p>
+ * https://medium.com/swlh/5-ways-to-replace-if-else-statements-857c0ff19357
  */
 public class FunctionalIf
 {
@@ -31,7 +33,7 @@ public class FunctionalIf
      * This is the functional map. it does not need to be final if we are in a singleton bean instance in Spring.
      * Function can be changed to Supplier, Runnable, etc.
      */
-    private  final Map<Integer, Function<Integer, String>> map = Map.of(
+    private final Map<Integer, Function<Integer, String>> map = Map.of(
             1, this::doSomethingWithMyInt,
             2, this::doSomethingElseWithMyInt,
             3, this::doSomethingWithMyInt);
