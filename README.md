@@ -1,6 +1,9 @@
 # ln-lib
 
-Library containing helpful classes
+Library contains
+- helpful classes
+- design patterns I was using
+- some best practices I wanted to share
 
 Pre-requisites:
 * gradle
