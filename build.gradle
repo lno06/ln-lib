@@ -11,6 +11,10 @@ plugins {
     id 'java'
     id 'maven'
     id 'idea'
+    id 'org.springframework.boot' version '2.3.3.RELEASE'
+    id 'io.spring.dependency-management' version '1.0.8.RELEASE'
+    // display git information in actuator/info
+    id 'com.gorylenko.gradle-git-properties' version '2.2.4'
 }
 
 group = 'com.lnlib'
@@ -32,6 +36,18 @@ repositories {
 }
 
 dependencies {
+    // spring
+    implementation("org.springframework.boot:spring-boot-starter-web")
+
+    // add swagger 2
+    implementation("io.springfox:springfox-boot-starter:3.0.0")
+
+    // spring boot actuator
+    implementation("org.springframework.boot:spring-boot-starter-actuator")
+
+    // spring boot security
+    implementation("org.springframework.boot:spring-boot-starter-security")
+
     // common
     // common libraries
     implementation("org.apache.commons:commons-lang3:${commons_lang3_version}")
@@ -55,4 +71,9 @@ test {
     // to tell gradle to launch junit5
     useJUnitPlatform()
     systemProperty "file.encoding", "UTF-8"
+}
+
+springBoot {
+    // add build information when running 'gradle bootRun'
+    buildInfo()
 }

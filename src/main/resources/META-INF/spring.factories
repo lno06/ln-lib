@@ -1,0 +1,2 @@
+# list of available error analyzers
+org.springframework.boot.diagnostics.FailureAnalyzer=com.lnlib.springboot.failureanalyzer.MyFailureAnalyzer
