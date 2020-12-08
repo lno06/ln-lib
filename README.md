@@ -1,19 +1,19 @@
 # ln-lib
 
-Library contains:
+## Pre-requisites:
+* gradle
+* java 11
+
+## Library contains:
 - helpful classes
 - design patterns I was using
 - some best practices I wanted to share
 
-Pre-requisites:
-* gradle
-* java 11
-
-Contains some external libraries:
+## Contains some external libraries:
 * JUnit5
 * GeoTools
 
-Example of Spring Boot
+## Example of Spring Boot
 - actuator
   - with build info in /info
   - it displays all endpoints in /actuator
@@ -25,4 +25,6 @@ Example of Spring Boot
   - http://localhost:8080/swagger-ui/ : returns pretty UI
 - Custom failure analyzer
 - Basic Spring Boot Security example
-  
+- Basic test of lombok  
+
+

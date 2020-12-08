@@ -1,84 +1,51 @@
 package com.lnlib.springboot.domain;
 
-import org.apache.commons.lang3.builder.EqualsBuilder;
-import org.apache.commons.lang3.builder.HashCodeBuilder;
+import lombok.*;
 
+/**
+ * Using lombok
+ * Generates all getters/setters as public (except 'internalField')
+ * Generates a constructor with parameters 'firstname' and 'lastname'
+ * Generates a constructor with all parameters
+ * Generates toString (except with 'id')
+ * Generates equals and hashCode (except with 'id')
+ * Creates a builder
+ * <p>
+ * All usages can be seen in corresponding junit test class
+ */
+@Getter
+@Setter
+@RequiredArgsConstructor
+@AllArgsConstructor
+@ToString
+@EqualsAndHashCode
+@Builder
 public class Person
 {
-
+    /**
+     * For testing purpose, excluding id from toString and equals/hashCode
+     */
+    @ToString.Exclude
+    @EqualsAndHashCode.Exclude
     private Integer id;
 
-    private String firstname;
+    /**
+     * final field is included in the constructor
+     */
+    private final String firstname;
 
+    /**
+     * NonNull field is included in the constructor
+     */
+    @NonNull
     private String lastname;
 
     private Integer age;
 
-    public Integer getId()
-    {
-        return id;
-    }
-
-    public void setId(Integer id)
-    {
-        this.id = id;
-    }
-
-    public String getFirstname()
-    {
-        return firstname;
-    }
-
-    public void setFirstname(String firstname)
-    {
-        this.firstname = firstname;
-    }
-
-    public String getLastname()
-    {
-        return lastname;
-    }
-
-    public void setLastname(String lastname)
-    {
-        this.lastname = lastname;
-    }
-
-    public Integer getAge()
-    {
-        return age;
-    }
-
-    public void setAge(Integer age)
-    {
-        this.age = age;
-    }
-
-    @Override
-    public boolean equals(Object o)
-    {
-        if (this == o) return true;
-
-        if (!(o instanceof Person)) return false;
-
-        var person = (Person) o;
-
-        return new EqualsBuilder()
-                .append(id, person.id)
-                .append(firstname, person.firstname)
-                .append(lastname, person.lastname)
-                .append(age, person.age)
-                .isEquals();
-    }
-
-    @Override
-    public int hashCode()
-    {
-        return new HashCodeBuilder(17, 37)
-                .append(id)
-                .append(firstname)
-                .append(lastname)
-                .append(age)
-                .toHashCode();
-    }
+    /**
+     * Getters and setters are set as private
+     */
+    @Getter(value = AccessLevel.PRIVATE)
+    @Setter(value = AccessLevel.PRIVATE)
+    private String internalField;
 }

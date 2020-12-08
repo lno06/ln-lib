@@ -48,6 +48,11 @@ dependencies {
     // spring boot security
     implementation("org.springframework.boot:spring-boot-starter-security")
 
+    // lombok
+    compileOnly("org.projectlombok:lombok")
+    // similar to compileOnly but also guarantees that transitive dependency is not visibile for consumer
+    annotationProcessor("org.projectlombok:lombok")
+
     // common
     // common libraries
     implementation("org.apache.commons:commons-lang3:${commons_lang3_version}")
