@@ -1,82 +1,96 @@
-
-
-buildscript {
-    repositories {
-        mavenLocal()
-        mavenCentral()
-    }
-}
-
 plugins {
-    id 'java'
-    id 'maven'
-    id 'idea'
-    id 'org.springframework.boot' version '2.3.3.RELEASE'
-    id 'io.spring.dependency-management' version '1.0.8.RELEASE'
+    id 'org.springframework.boot' version '2.4.1'
+    id 'io.spring.dependency-management' version '1.0.10.RELEASE'
     // display git information in actuator/info
     id 'com.gorylenko.gradle-git-properties' version '2.2.4'
+    id 'java'
+    id 'idea'
 }
 
 group = 'com.lnlib'
-archivesBaseName = 'ln-lib'
+sourceCompatibility = JavaVersion.VERSION_15
 
 tasks.withType(JavaCompile) {
     options.encoding = 'UTF-8'
-    sourceCompatibility = JavaVersion.VERSION_11
-    targetCompatibility = JavaVersion.VERSION_11
+}
+
+configurations {
+    compileOnly {
+        extendsFrom annotationProcessor
+    }
 }
 
 repositories {
-    mavenLocal()
+//    mavenLocal()
     // for geotools
     maven { url "https://repo.osgeo.org/repository/release/" }
     // for jai_imageio
     maven { url "http://maven.geotoolkit.org/" }
     mavenCentral()
+    // for spring
+    maven { url 'https://repo.spring.io/milestone' }
+
 }
+
+ext {
+    // for dependency with spring boot 2.4.X
+    set('springCloudVersion', "2020.0.0")
+}
+
 
 dependencies {
     // spring
-    implementation("org.springframework.boot:spring-boot-starter-web")
+    implementation 'org.springframework.boot:spring-boot-starter-web'
 
     // add swagger 2
-    implementation("io.springfox:springfox-boot-starter:3.0.0")
+    implementation 'io.springfox:springfox-boot-starter:3.0.0'
 
     // spring boot actuator
-    implementation("org.springframework.boot:spring-boot-starter-actuator")
+    implementation 'org.springframework.boot:spring-boot-starter-actuator'
 
     // spring boot security
-    implementation("org.springframework.boot:spring-boot-starter-security")
+    implementation 'org.springframework.boot:spring-boot-starter-security'
 
     // lombok
-    compileOnly("org.projectlombok:lombok")
+    compileOnly 'org.projectlombok:lombok'
     // similar to compileOnly but also guarantees that transitive dependency is not visibile for consumer
-    annotationProcessor("org.projectlombok:lombok")
+    annotationProcessor 'org.projectlombok:lombok'
 
     // selma mapping
     // processor required for compilation
-    annotationProcessor("fr.xebia.extras:selma-processor:1.0")
+    annotationProcessor 'fr.xebia.extras:selma-processor:1.0'
     // required at runtime
-    implementation("fr.xebia.extras:selma:1.0")
+    implementation 'fr.xebia.extras:selma:1.0'
+
+    // spring cloud openFeign
+    implementation 'org.springframework.cloud:spring-cloud-starter-openfeign'
 
     // common
     // common libraries
-    implementation("org.apache.commons:commons-lang3:${commons_lang3_version}")
+    implementation "org.apache.commons:commons-lang3:${commons_lang3_version}"
 
     // geotools
-    implementation("org.locationtech.jts:jts-core:${jts_core_version}")
+    implementation "org.locationtech.jts:jts-core:${jts_core_version}"
 
     // jdk11 does not contain javax.xml.bind.JAXBException, and is needed for some projects
-    implementation("javax.xml.bind:jaxb-api:${jaxb_api_version}")
+    implementation "javax.xml.bind:jaxb-api:${jaxb_api_version}"
 
-    implementation("org.slf4j:slf4j-api:${slf4j_api_version}")
+    implementation "org.slf4j:slf4j-api:${slf4j_api_version}"
 
     // common-test
-    testImplementation("org.springframework.boot:spring-boot-starter-test")
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
     // junit framework
-    testImplementation("org.junit.jupiter:junit-jupiter:${junit_jupiter_version}")
+    testImplementation "org.junit.jupiter:junit-jupiter:${junit_jupiter_version}"
     // Matchers
-    testImplementation("org.hamcrest:hamcrest:${hamcrest_version}")
+    testImplementation "org.hamcrest:hamcrest:${hamcrest_version}"
+}
+
+
+dependencyManagement {
+    imports {
+        // required for spring clound
+        mavenBom "org.springframework.cloud:spring-cloud-dependencies:${springCloudVersion}"
+    }
 }
 
 test {

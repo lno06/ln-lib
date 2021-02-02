@@ -31,12 +31,13 @@
 - Basic test of Selma mapper
   - selma is a fast mapper (https://javaetmoi.com/2015/09/benchmark-frameworks-java-mapping-objet)
   - selma is using annotation processing
-
+- FeignClient: enables to easily write web service clients
+  - It uses Spring Cloud OpenFeign
+  - It connects to a fake API : https://instantwebtools.net/fake-rest-api
+  - http://localhost:8080/airlines/1
+  - http://localhost:8080/passengers?page=1&size=10
 
 TODO dans bestpractice
-- feign with fake API
-https://javatodev.com/consuming-rest-api-using-feign-client-in-spring-boot/
-https://instantwebtools.net/fake-rest-api
 - Controller Advice
 https://javatodev.com/exception-handling-spring-boot/
 - webflux
