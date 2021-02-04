@@ -21,10 +21,9 @@
   - it displays all endpoints in /actuator (http://localhost:8080/actuator)
   - display all health details (http://localhost:8080/actuator/health)
   - display git information (http://localhost:8080/actuator/info)
-- swagger2
-  - http://localhost:8080/v2/api-docs : returns json doc
+- springdoc-openapi (replaces swagger)
   - http://localhost:8080/v3/api-docs : returns json doc
-  - http://localhost:8080/swagger-ui/ : returns pretty UI
+  - http://localhost:8080/swagger-ui.html/ : returns pretty UI
 - Custom failure analyzer (see MyFailureAnalyzerController)
 - Basic Spring Boot Security example (http://localhost:8080/requires-login)
 - Basic test of lombok  

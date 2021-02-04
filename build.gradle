@@ -42,8 +42,10 @@ dependencies {
     // spring
     implementation 'org.springframework.boot:spring-boot-starter-web'
 
-    // add swagger 2
-    implementation 'io.springfox:springfox-boot-starter:3.0.0'
+    // swagger 2
+    // implementation 'io.springfox:springfox-boot-starter:3.0.0'
+    // springdoc-openapi replaces swagger 2
+    implementation 'org.springdoc:springdoc-openapi-ui:1.5.3'
 
     // spring boot actuator
     implementation 'org.springframework.boot:spring-boot-starter-actuator'
