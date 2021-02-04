@@ -33,4 +33,10 @@ public interface AirlineClient
      */
     @RequestMapping(value = "/passenger")
     PaginatedPassengerResponse getPassengers(@RequestParam("page") Long page, @RequestParam("size") Long size);
+
+    /**
+     * Calls a non existing end point (To test ErrorDecoder in {@link FeignClientConfiguration})
+     */
+    @RequestMapping(value = "/unknownendpoint")
+    String getUnknownEndpoint();
 }

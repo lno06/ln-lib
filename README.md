@@ -36,8 +36,11 @@
   - It connects to a fake API : https://instantwebtools.net/fake-rest-api
   - http://localhost:8080/airlines/1
   - http://localhost:8080/passengers?page=1&size=10
+- ControllerAdvice: Custom exception handling
+  - http://localhost:8080/throwexception : a generic exception has been caught
+  - http://localhost:8080/thrownfe : a NumberFormatException but it is caught by its parent class (IllegalArgumentException)
+  - http://localhost:8080/throwfeign : Feign was calling a non existing end point, ErrorDecoder is handling cases
+  - http://localhost:8080/throwlocalized : The returned exception is localized
 
 TODO dans bestpractice
-- Controller Advice
-https://javatodev.com/exception-handling-spring-boot/
 - webflux

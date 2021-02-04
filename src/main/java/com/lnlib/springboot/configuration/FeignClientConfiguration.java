@@ -2,7 +2,9 @@ package com.lnlib.springboot.configuration;
 
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.lnlib.springboot.exception.FeignClientException;
 import feign.codec.Decoder;
+import feign.codec.ErrorDecoder;
 import org.springframework.boot.autoconfigure.http.HttpMessageConverters;
 import org.springframework.cloud.openfeign.support.ResponseEntityDecoder;
 import org.springframework.cloud.openfeign.support.SpringDecoder;
@@ -37,5 +39,21 @@ public class FeignClientConfiguration
         return new ResponseEntityDecoder(
                 new SpringDecoder(() -> new HttpMessageConverters(
                         new MappingJackson2HttpMessageConverter(mapper))));
+    }
+
+    /**
+     * Configures the ErrorDecoder
+     * <p>
+     * This quick example is using IllegalStateException, but it would be better to have a dedicated exception for this case
+     */
+    @Bean
+    public ErrorDecoder errorFeignDecoder()
+    {
+        return (methodKey, response) ->
+                switch (response.status()) {
+                    case 400 -> new FeignClientException("exception.feign.bad_request");
+                    case 404 -> new FeignClientException("exception.feign.unknown_request");
+                    default -> new FeignClientException("exception.feign.common");
+                };
     }
 }
